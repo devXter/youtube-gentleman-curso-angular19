@@ -1,0 +1,22 @@
+@defer (when isContentReady) {
+<p>Component</p>
+} @loading (after 100ms; minimum 1s) {
+<p>Loading...</p>
+} @placeholder {
+<p>Setting up the content...</p>
+} @error {
+<!--Esta sección maneja los errores de render-->
+<p>Sorry , we couldn't load the component. Please try again later</p>
+}
+<!--Stream architecture cada componente se carga de sus propios datos y también de controlar su propio manejo de errores-->
+
+@defer (when isContentReady) {
+<app-error-simulated></app-error-simulated>
+} @loading (after 100ms; minimum 1s) {
+<p>Loading...</p>
+} @placeholder {
+<p>Setting up the content...</p>
+} @error {
+<!--Esta sección maneja los errores de render-->
+<p>Sorry , we couldn't load the component. Please try again later</p>
+}

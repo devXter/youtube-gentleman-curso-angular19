@@ -1,0 +1,87 @@
+<h3>DataReady</h3>
+
+@defer (when dataReady) {
+  <p>Los datos han sido cargados</p>
+} @placeholder {
+  <p>Mientras los datos no están</p>
+}
+
+<h3>Idle</h3>
+<!-- Esto aplica cuando el browser este "listo" o "disponible" ahí lo va a cargar -->
+<!-- Primero carga todo y después carga esto, esto aplica cuando esta bloque no es prioridad -->
+@defer (on idle) {
+ <p>Large component loaded after everything is loaded and browser is idle</p>
+} @placeholder {
+  <p>Mientras los datos no están</p>
+}
+
+
+<h3>Trigger element</h3>
+<!--El div aparece en el viewport-->
+<div #triggerElement>Hola !a (div externo)</div>
+@defer (on viewport(triggerElement)) {
+ <p>Me cargué porque triggerElement ha aparecido en la vista (defer)</p>
+}
+
+<h3>Interaction</h3>
+
+@defer (on interaction) {
+  <p>Me cargué porque interactuaron conmigo (defer)</p>
+} @placeholder {
+  <p>Mientras los datos no están (placeholder)</p>
+}
+
+<h3>InteractionElemento</h3>
+<div #interactionElement>Hello! (div externo)</div>
+
+@defer (on interaction(interactionElement)) {
+  <p>Me cargué porque se interactuado con #interactionElement (defer)</p>
+}
+
+
+<h3>hover</h3>
+<!--se carga cuando se hace hover por el placeholder-->
+@defer (on hover) {
+  <p>Me cargué porque me hicieron hover (defer)</p>
+} @placeholder {
+  <p>Pasa el cursor 👆🏻 (placeholder)</p>
+}
+
+<h3>hover specific</h3>
+<!--Se carga el div-->
+<div #specificElement>Pasame la manita (div externo)</div>
+@defer (on hover(specificElement)) {
+  <p>Me cargué porque le hicieron hover (defer)</p>
+} @placeholder {
+  <p>Pasale la mano (placeholder)</p>
+}
+
+
+<h3>timer</h3>
+
+@defer (on timer(500ms)) {
+  <p>Me cargué porque se cumplió el time (defer)</p>
+} @placeholder {
+  <p>Mientas los datos no están (placeholder)</p>
+}
+
+<h3>prefetch</h3>
+<!--Esto es para buscar data lo antes posible, te permite cargar los recursos del defer-->
+
+@defer (on interaction; prefetch on idle) {
+  <p>Me cargué porque interactuaron conmigo o el browser ya está idle (disponible) (defer)</p>
+} @placeholder {
+  <p>Interactúa conmigo (placeholder)</p>
+}
+
+<h3>Viewport</h3>
+<!--Una vez que llegue a esta parte de la pantalla este bloque no se carga, sirve para un inifity scroll-->
+<!--Para esta opción debes agregar un "placeholder" para ocupar los lugares mientras llega.-->
+<!--Esta opción es para un contenedor-->
+@defer (on viewport) {
+  <p>large component loaded after it appeared inside the viewport</p>
+} @placeholder {
+  <p>Mientras los datos no están (con el tamaño del elemento a reemplazar)</p>
+}
+
+

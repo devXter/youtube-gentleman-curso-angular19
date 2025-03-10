@@ -1,0 +1,12 @@
+<ul>
+  <li *ngFor="let name of names">{{ name }}</li>
+</ul>
+
+
+<ul>
+  @for (name of names; track name) {
+    <li>{{ name }}</li>
+  } @empty {
+    <li>No Names</li>
+  }
+</ul>

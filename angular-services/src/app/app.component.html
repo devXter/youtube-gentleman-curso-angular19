@@ -1,0 +1,11 @@
+@let characterLocal = characters();
+
+
+@for (character of characterLocal; track character.id) {
+  {{ character.id }}
+  {{ character.name }}
+  {{ character.lastName }}
+  {{ character.age }}
+}
+
+<router-outlet/>
